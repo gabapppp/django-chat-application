@@ -45,7 +45,7 @@ celery -A ChatApp worker -l info
 ### Result
 
 <p align="center">
-  <img src="https://github.com/Aron-S-G-H/django-chat-application/blob/main/assets/result.png">
+  <img src="https://github.com/gabapppp/django-chat-application/blob/main/assets/result.png">
 </p>
 
 ---
