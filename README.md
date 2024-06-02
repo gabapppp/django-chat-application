@@ -1,7 +1,9 @@
 # Django Chat Application
-Async Chat application with Django Channels, Websocket and JS (Ajax) 
+
+Async Chat application with Django Channels, Websocket and JS (Ajax)
 
 ## Features
+
 - Authentication - like always :)
   - login
   - register (OTP)
@@ -16,17 +18,22 @@ Async Chat application with Django Channels, Websocket and JS (Ajax)
 - Members list
 - Celery (RabbitMQ as broker & Redis as backend)
 
-### ToDo 
+### ToDo
+
 - Add Docker
 
 ---
+
 ### ⚠️ Video call doesn't support Microsoft Edge browser
+
 ---
 
 ### Usage :
--  For sending a one-time password via email, you should set your email and your email host password in 'EMAIL_HOST_USER' and 'EMAIL_HOST_PASSWORD' in 'settings.py' . Otherwise, sending the one-time password for user registration won't work .
+
+- For sending a one-time password via email, you should set your email and your email host password in 'EMAIL_HOST_USER' and 'EMAIL_HOST_PASSWORD' in 'settings.py' . Otherwise, sending the one-time password for user registration won't work .
+
 ```bash
-git clone https://github.com/Aron-S-G-H/django-chat-application.git
+git clone https://github.com/gabapppp/django-chat-application.git
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver # and see in localhost:8000
@@ -34,10 +41,13 @@ python manage.py runserver # and see in localhost:8000
 celery -A ChatApp worker -l info
 # you also need RabbitMQ as broker and Redis as backend
 ```
+
 ### Result
+
 <p align="center">
   <img src="https://github.com/Aron-S-G-H/django-chat-application/blob/main/assets/result.png">
 </p>
 
 ---
+
 #### any contributions are welcome

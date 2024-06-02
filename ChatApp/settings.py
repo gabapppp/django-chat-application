@@ -144,7 +144,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 
 # Celery Configuration
-CELERY_TIMEZONE = "Asia/Ho_Chi_Minh_City"
+CELERY_TIMEZONE = "Asia/Ho_Chi_Minh"
 CELERY_ENABLE_UTC = True
 CELERY_BROKER_URL = 'pyamqp://guest@localhost:5672'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
