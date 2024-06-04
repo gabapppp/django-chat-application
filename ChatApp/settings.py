@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-o+f#qyg$c$m=fk=j1+05vn@_m&tyy&++ea#ak(!!g(ek*#$y0!
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'daphne',
@@ -104,8 +104,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mailersend.net'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'MS_aazecz@trial-7dnvo4dzz3xl5r86.mlsender.net'
-EMAIL_HOST_PASSWORD = 'Leo8VZYpJv3AWjxK'
+EMAIL_HOST_USER = 'MS_XnKftR@trial-neqvygmew1j40p7w.mlsender.net'
+EMAIL_HOST_PASSWORD = 'DvsPNEipxqIADI6i'
 
 CHANNEL_LAYERS = {
     "default": {

@@ -1,71 +1,71 @@
 {% extends 'templates/base.html' %}
 {% load static %}
 {% block main %}
-    <div class="col-md-4 col-xl-3 chat">
-        <div class="card mb-sm-3 mb-md-0 contacts_card">
+<div class="col-md-4 col-xl-3 chat">
+    <div class="card mb-sm-3 mb-md-0 contacts_card">
 
-            <div class="card-header">
-                <div class="input-group">
-                    <input type="text" placeholder="Search..." id="searchInput" class="form-control search">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
-                    </div>
+        <div class="card-header">
+            <div class="input-group">
+                <input type="text" placeholder="Search..." id="searchInput" class="form-control search">
+                <div class="input-group-prepend">
+                    <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
                 </div>
-            </div>
-
-            {% if chat_rooms %}
-                <div class="card-body contacts_body">
-                    <ul class="contacts">
-                        {% for room in chat_rooms %}
-                            <li class="d-flex justify-content-between">
-                                <a href="{% url 'chat:room' room.slug %}" class="rooms" id="{{ room.room_name }}">
-                                    <div class="d-flex bd-highlight">
-                                    {% with memeberNum=room.members.count %}
-                                        <div class="img_cont">
-                                            {% if room.room_image %}
-                                                <img src="{{ room.room_image.url }}" class="rounded-circle user_img" alt="Icon">
-                                            {% else %}
-                                                <img src="{% static 'chat-icon.png' %}" class="rounded-circle user_img" alt="Icon">
-                                            {% endif %}
-                                                {% if memeberNum > 1 %}
-                                                    <span class="online_icon"></span>
-                                                {% else %}
-                                                    <span class="offline"></span>
-                                                {% endif %}
-                                        </div>
-                                        <div class="user_info">
-                                            <span>{{ room.room_name.capitalize }}</span>
-                                                {% if memeberNum > 1 %}
-                                                    <p>{{ memeberNum }} Members</p>
-                                                {% else %}
-                                                    <p >{{ memeberNum }} Member</p>
-                                                {% endif %}
-                                        </div>
-                                    {% endwith %}
-                                    </div>
-                                </a>
-                                <a href="#" onclick="removeRoom('{{ room.room_name }}', '{{ room.creator.username }}')"
-                                   class="d-flex flex-column justify-content-center text-danger mr-3"
-                                   style="font-size: larger">
-                                    <i class="fas fa-minus"></i>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% else %}
-                <div class="card-body contacts_body d-flex justify-content-center" style="align-items: center">
-                    <div class="d-flex flex-column text-center">
-                        <span class="text-light font-weight-bold" style="font-size: larger">No Room exists</span>
-                        <span class="text-light">Search for a Room or Create a new Room</span>
-                    </div>
-                </div>
-            {% endif %}
-            <div class="card-footer text-center">
-                <a href="#" class="text-warning" id="createRoom">Create new Room<i class="fas fa-plus"></i></a>
             </div>
         </div>
+
+        {% if chat_rooms %}
+        <div class="card-body contacts_body">
+            <ul class="contacts">
+                {% for room in chat_rooms %}
+                <li class="d-flex justify-content-between">
+                    <a href="{% url 'chat:room' room.slug %}" class="rooms" id="{{ room.room_name }}">
+                        <div class="d-flex bd-highlight">
+                            {% with memeberNum=room.members.count %}
+                            <div class="img_cont">
+                                {% if room.room_image %}
+                                <img src="{{ room.room_image.url }}" class="rounded-circle user_img" alt="Icon">
+                                {% else %}
+                                <img src="{% static 'chat-icon.png' %}" class="rounded-circle user_img" alt="Icon">
+                                {% endif %}
+                                {% if memeberNum > 1 %}
+                                <span class="online_icon"></span>
+                                {% else %}
+                                <span class="offline"></span>
+                                {% endif %}
+                            </div>
+                            <div class="user_info">
+                                <span>{{ room.room_name.capitalize }}</span>
+                                {% if memeberNum > 1 %}
+                                <p>{{ memeberNum }} Members</p>
+                                {% else %}
+                                <p>{{ memeberNum }} Member</p>
+                                {% endif %}
+                            </div>
+                            {% endwith %}
+                        </div>
+                    </a>
+                    <a href="#" onclick="removeRoom('{{ room.room_name }}', '{{ room.creator.username }}')"
+                        class="d-flex flex-column justify-content-center text-danger mr-3" style="font-size: larger">
+                        <i class="fas fa-minus"></i>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <div class="card-body contacts_body d-flex justify-content-center" style="align-items: center">
+            <div class="d-flex flex-column text-center">
+                <span class="text-light font-weight-bold" style="font-size: larger">No Room exists</span>
+                <span class="text-light">Search for a Room or Create a new Room</span>
+            </div>
+        </div>
+        {% endif %}
+        <div class="card-footer text-center">
+            <a href="#" class="text-warning" id="createRoom">Create new Room<i class="fas fa-plus"></i></a>
+        </div>
+        <button id="logoutBtn" type="button" class="btn">Log out</button>
     </div>
+</div>
 
 <script>
     // ----------CREATE ROOM
@@ -84,7 +84,7 @@
             showLoaderOnConfirm: true,
             preConfirm: (name) => {
                 $.ajax({
-                    url: '{% url 'chat:create-room' %}',
+                    url: `{% url 'chat:create-room' %}`,
                     type: 'POST',
                     data: {
                         'room_name': name,
@@ -143,7 +143,7 @@
         let roomName = searchInput.value;
         if (roomName) {
             $.ajax({
-                url: '{% url 'chat:lobby' %}',
+                url: `{% url 'chat:lobby' %}`,
                 type: 'POST',
                 data: {
                     'room_name': roomName,
@@ -245,7 +245,7 @@
     function removeRoom(roomName, roomCreator) {
         let text;
         let user = '{{ request.user.username }}';
-        if (roomCreator === user){
+        if (roomCreator === user) {
             text = `Do you want to delete ${roomName} room ?`
         } else {
             text = `Do you want to exit ${roomName} room ?`;
@@ -288,5 +288,14 @@
             }
         })
     }
+    // ----------SEARCH ROOM
+    let logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', () => {
+        $.ajax({
+            url: '{% url "account:logout" %}',
+        })
+        window.location.reload()
+    });
+
 </script>
 {% endblock %}
