@@ -151,7 +151,7 @@ class ForgotPasswordView(View):
     def post(self, request):
         token = request.POST.get('token')
         code = request.POST.get('code')
-
+        password = request.POST.get('password')
         if token and code:
             try:
                 user = Otp.objects.get(token=token, code=code)
@@ -159,8 +159,10 @@ class ForgotPasswordView(View):
             except:
                 return JsonResponse({'status': 400, 'message': 'Code is wrong'})
             find_user = User.objects.get(username=username)
-            login(request, find_user)
-            user.delete()
+            find_user.set_password(password)
+            #login(request, find_user)
+            #user.delete()
             return JsonResponse({'status': 200, 'username': username})
         else:
             return JsonResponse({'status': 400,  'message': 'Data not sent'})
+          
